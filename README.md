@@ -9,15 +9,20 @@
 **readyState** 
 WebSocket物件目前狀態，共四種：
 >CONNECTING：值為0，表示正在連線中。
+>
 >OPEN：值為1，表示連線成功，可以進行通訊作業。
+>
 >CLOSING：值為2，表示連線正在關閉。
+>
 >CLOSED：值為3，表示連線已關閉，或連線失敗。
 
 
 **onopen** 
 連線成功
 >ws.onmessage = function(event) {
+>
 >  console.log('websocket is opened');
+>
 >};
 
 **send** 
@@ -27,19 +32,25 @@ WebSocket物件目前狀態，共四種：
 **onmessage** 
 從伺服器收到回傳的訊息
 >ws.onmessage = function(event) {
+>
 >  console.log('recive message');
+>
 >};
 
 **onclose** 
 關閉連線
 >ws.onmessage = function(event) {
+>
 >  console.log('websocket is closed');
+>
 >};
 
 **onerror** 
 發生錯誤
 >ws.onerror = function(event) {
+>
 >  console.log('websocket error');
+>
 >};
 
 
