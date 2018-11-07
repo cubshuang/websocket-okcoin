@@ -28,7 +28,7 @@ ws.onmessage = function(event) {
 **send** 
 傳資料給伺服器
 ```js
-ws.send(‘my message');
+ws.send('my message');
 ```
 
 **onmessage** 
