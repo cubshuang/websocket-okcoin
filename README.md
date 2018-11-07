@@ -24,7 +24,7 @@ WebSocket物件目前狀態，共四種：
 ws.onmessage = function(event) {
   console.log('websocket is opened');
 };
-``
+```
 **send** 
 傳資料給伺服器
 ```js
