@@ -4,8 +4,9 @@
 
 **ＷebSocket** 
 建立一個ＷebSocket物件
->var ws = new WebSocket('ws://url');
-
+```js 
+var ws = new WebSocket('ws://url');
+```
 **readyState** 
 WebSocket物件目前狀態，共四種：
 >CONNECTING：值為0，表示正在連線中。
@@ -19,40 +20,38 @@ WebSocket物件目前狀態，共四種：
 
 **onopen** 
 連線成功
->ws.onmessage = function(event) {
->
->  console.log('websocket is opened');
->
->};
-
+```js
+ws.onmessage = function(event) {
+  console.log('websocket is opened');
+};
+``
 **send** 
 傳資料給伺服器
->ws.send(‘my message');
+```js
+ws.send(‘my message');
+``
 
 **onmessage** 
 從伺服器收到回傳的訊息
->ws.onmessage = function(event) {
->
->  console.log('recive message');
->
->};
-
+```js
+ws.onmessage = function(event) {
+  console.log('recive message');
+};
+```
 **onclose** 
 關閉連線
->ws.onmessage = function(event) {
->
->  console.log('websocket is closed');
->
->};
-
+```js
+ws.onmessage = function(event) {
+  console.log('websocket is closed');
+};
+```
 **onerror** 
 發生錯誤
->ws.onerror = function(event) {
->
->  console.log('websocket error');
->
->};
-
+```js
+ws.onerror = function(event) {
+  console.log('websocket error');
+};
+```
 
 
 ## Demo
