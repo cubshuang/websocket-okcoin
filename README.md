@@ -29,7 +29,7 @@ ws.onmessage = function(event) {
 傳資料給伺服器
 ```js
 ws.send(‘my message');
-``
+```
 
 **onmessage** 
 從伺服器收到回傳的訊息
