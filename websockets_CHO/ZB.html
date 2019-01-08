@@ -1,0 +1,46 @@
+<html>
+
+<div id="ZB"></div>
+
+<script>
+	
+//======================= BitFinex =========================
+//https://www.zb.com/i/developer/websocketApi#config
+
+
+var EX_name = "ZB" ;
+var Currancy_Pair = "BTC/USD"
+var zb_ws = new WebSocket("wss://api.zb.cn:9999/websocket");
+
+zb_ws.onopen = function(){
+
+let msg = JSON.stringify({ 
+    'event':'addChannel',
+	'channel':'btcusdt_ticker',
+})
+ zb_ws.send(msg);
+};
+
+
+zb_ws.onmessage = function(msg){
+
+  var zb_response = JSON.parse(msg.data);
+  console.log(zb_response);
+  
+  var res = zb_response;
+  if( res != "hb"){
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	res.ticker.buy + 
+    "  ASK: " +
+    res.ticker.sell +
+    "  LAST: " +
+    res.ticker.last	;
+  };
+  
+};
+
+
+
+</script>
+</html>

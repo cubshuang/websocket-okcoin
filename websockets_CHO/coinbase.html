@@ -1,0 +1,61 @@
+<html>
+
+<div id="CoinBasePrime"></div>
+
+<script>
+	
+//======================= BitFinex =========================
+https://docs.prime.coinbase.com/#websocket-feed
+
+
+var EX_name = "CoinBasePrime" ;
+var Currancy_Pair = "BTC/USD"
+var coinbaseprime_ws = new WebSocket("wss://ws-feed.prime.coinbase.com");
+
+coinbaseprime_ws.onopen = function(){
+
+let msg = JSON.stringify({
+    "type": "subscribe",
+    //"product_ids": [
+    //    "BTC-USD",
+        //"ETH-EUR"
+    //],
+    "channels": [
+        //"level2",
+        //"heartbeat",
+        {
+            "name": "ticker",
+            "product_ids": [
+                "BTC-USD",
+                //"ETH-USD"
+            ]
+        }
+    ]
+})
+ coinbaseprime_ws.send(msg);
+};
+
+
+coinbaseprime_ws.onmessage = function(msg){
+
+  var coinbase_response = JSON.parse(msg.data);
+  console.log(coinbase_response);
+  
+  var res_LastPrice = coinbase_response.price;
+  //var res_Bid = response.b;
+  //var res_Ask = response.a;
+  
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	//res_Bid + 
+    "  ASK: " +
+    //res_Ask +
+    "  LAST: " +
+    res_LastPrice;
+  
+};
+
+
+
+</script>
+</html>

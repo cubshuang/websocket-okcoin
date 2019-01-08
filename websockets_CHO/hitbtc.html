@@ -1,0 +1,49 @@
+<html>
+
+<div id="HitBTC"></div>
+
+<script>
+	
+//======================= HitBTC =========================
+//https://api.hitbtc.com/#socket-api-reference
+
+
+var EX_name = "HitBTC" ;
+var Currancy_Pair = "BTC/USD"
+var hitbtc_ws = new WebSocket("wss://api.hitbtc.com/api/2/ws");
+
+hitbtc_ws.onopen = function(){
+
+let msg = JSON.stringify({ 
+  "method": "subscribeTicker",
+  "params": { 
+    "symbol": "BTCUSD"
+  },
+  "id": 141517
+})
+ hitbtc_ws.send(msg);
+};
+
+
+hitbtc_ws.onmessage = function(msg){
+
+  var HitBTC_response = JSON.parse(msg.data);
+  console.log(HitBTC_response);
+  
+  var res = HitBTC_response;
+  if( res != "hb"){
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	res.params.bid + 
+    "  ASK: " +
+    res.params.ask +
+    "  LAST: " +
+    res.params.last	;
+  };
+  
+};
+
+
+
+</script>
+</html>

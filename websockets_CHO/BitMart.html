@@ -1,0 +1,45 @@
+<html>
+
+<div id="BitMart"></div>
+
+<script>
+	
+//======================= BitMart =========================
+//https://github.com/bitmartexchange/api-docs
+
+var EX_name = "BitMart" ;
+var Currancy_Pair = "BTC/USD"
+var bitmart_ws = new WebSocket("wss://openws.bitmart.com");
+
+bitmart_ws.onopen = function(){
+
+let msg = JSON.stringify({ 
+  "subscribe":"price",
+  "symbol":"BTC_USDT"
+})
+ bitmart_ws.send(msg);
+};
+
+
+bitmart_ws.onmessage = function(msg){
+
+  var BitMart_response = JSON.parse(msg.data);
+  console.log(BitMart_response);
+  
+  var res = BitMart_response;
+  if( res != "hb"){
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	res.data.current_price + 
+    "  ASK: " +
+    res.data.current_price +
+    "  LAST: " +
+    res.data.current_price	;
+  };
+  
+};
+
+
+
+</script>
+</html>

@@ -1,0 +1,55 @@
+<html>
+
+
+<div id="BinanceREST"></div>
+
+
+<script>
+	
+//======================= Binance =========================
+//https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api_CN.md
+
+    
+setInterval(BinanceREST,1000);    
+    
+function BinanceREST(){
+    
+var EX_name = "BinanceREST" ;
+var Currancy_Pair = "BTC/USDT";
+var burl = "https://api.binance.com";
+
+var query = '/api/v1/ticker/24hr';
+    
+var options = '?symbol=BTCUSDT';
+    
+var url = burl + query + options ;
+    
+var BinanceRequest = new XMLHttpRequest();
+var binance_response = '';
+
+BinanceRequest.open('GET', url, true);
+BinanceRequest.onload = function(){
+   var text = BinanceRequest.responseText;
+   //console.log(text);
+   binance_response = JSON.parse(text);
+   //console.log(binance_response);
+    
+document.getElementById(EX_name).innerHTML = 
+  "<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+  binance_response.bidPrice + 
+  "  ASK: " +
+  binance_response.askPrice +
+  "  LAST: " +
+  binance_response.lastPrice;  
+}
+BinanceRequest.send();
+
+
+ 
+    
+    
+    
+}//end of BinanceREST
+
+</script>
+</html>

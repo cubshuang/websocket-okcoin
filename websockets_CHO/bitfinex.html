@@ -1,0 +1,47 @@
+<html>
+
+<div id="Bitfinex"></div>
+
+<script>
+	
+//======================= BitFinex =========================
+//https://docs.bitfinex.com/v2/reference#ws-public-ticker
+
+
+var EX_name = "Bitfinex" ;
+var Currancy_Pair = "BTC/USD"
+var bitfinex_ws = new WebSocket("wss://api.bitfinex.com/ws/2");
+
+bitfinex_ws.onopen = function(){
+
+let msg = JSON.stringify({ 
+  event: 'subscribe', 
+  channel: 'ticker', 
+  symbol: 'tBTCUSD' 
+})
+ bitfinex_ws.send(msg);
+};
+
+
+bitfinex_ws.onmessage = function(msg){
+
+  var bitfinex_response = JSON.parse(msg.data);
+  console.log(bitfinex_response);
+  
+  var res = bitfinex_response[1];
+  if( res != "hb"){
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	res[0] + 
+    "  ASK: " +
+    res[2] +
+    "  LAST: " +
+    res[6]	;
+  };
+  
+};
+
+
+
+</script>
+</html>

@@ -1,0 +1,36 @@
+<html>
+
+<div id="Binance"></div>
+
+<script>
+	
+//======================= Binance =========================
+//https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md
+
+var EX_name = "Binance" ;
+var Currancy_Pair = "BTC/USDT"
+var binance_ws = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@ticker");
+
+binance_ws.onmessage = function(msg){
+
+  var response = JSON.parse(msg.data);
+  console.log(response);
+  
+  var res_LastPrice = response.c;
+  var res_Bid = response.b;
+  var res_Ask = response.a;
+  
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	res_Bid + 
+    "  ASK: " +
+    res_Ask +
+    "  LAST: " +
+    res_LastPrice;
+  
+  
+};
+
+
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+
+  <script src="http://js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+  // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+
+		if (message.id !== undefined)
+ {
+//   window.console.log('id:' + message.id + ' price: ' + message.price + ' amount: ' + message.amount);
+ }
+      }
+    };
+
+    // Bitstamp Live Ticker
+    var pusher = new Pusher('de504dc5763aeef9ff52');
+    var channel = pusher.subscribe('live_trades_ethusd');
+    channel.bind('trade', function(data) {
+      window.console.log('id:' + data.id + ' price: ' + data.price + ' amount: ' + data.amount);
+    });
+  </script>
+</head>

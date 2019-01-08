@@ -1,0 +1,47 @@
+<html>
+
+<div id="Dragonex"></div>
+
+<script>
+	
+//======================= Dragonex =========================
+//https://github.com/Dragonexio/OpenApi/blob/master/docs/%E4%B8%AD%E6%96%87/4.websocket.md
+
+
+var EX_name = "Dragonex" ;
+var Currancy_Pair = "BTC/USDT"
+var dragonex_ws = new WebSocket("wss://openapiws.dragonex.io/ws");
+
+dragonex_ws.onopen = function(){
+
+let msg = JSON.stringify({ 
+ "cmd": "sub", 
+ // 這網站的貨幣對是用coin-id表示，BTC/USDT的id是101 
+ "value": "{\"roomid\": \"market-quote-real-coin-101\"}"
+})
+ dragonex_ws.send(msg);
+};
+
+
+dragonex_ws.onmessage = function(msg){
+
+  var Dragonex_response = JSON.parse(msg.data);
+  console.log(Dragonex_response);
+  
+  var res = Dragonex_response;
+  if( res != "hb"){
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	res.data.close_price + 
+    "  ASK: " +
+    res.data.close_price +
+    "  LAST: " +
+    res.data.close_price	;
+  };
+  
+};
+
+
+
+</script>
+</html>

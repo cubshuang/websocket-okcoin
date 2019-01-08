@@ -1,0 +1,47 @@
+<html>
+
+<div id="LBank"></div>
+
+<script>
+	
+//======================= LBank =========================
+//hhttps://github.com/LBank-exchange/lbank-official-api-docs/blob/master/API-For-Spot-CN/%E5%B8%81%E5%B8%81%E4%BA%A4%E6%98%93Websocket%20API(%E8%A1%8C%E6%83%85).md
+
+
+var EX_name = "LBank" ;
+var Currancy_Pair = "BTC/USD"
+var lbank_ws = new WebSocket("wss://api.lbkex.com/ws/V2/");
+
+lbank_ws.onopen = function(){
+
+let msg = JSON.stringify({ 
+  "action": "subscribe", 
+  "subscribe": "tick", 
+  "pair": "btc_usdt"
+})
+ lbank_ws.send(msg);
+};
+
+
+lbank_ws.onmessage = function(msg){
+
+  var LBank_response = JSON.parse(msg.data);
+  console.log(LBank_response);
+  
+  var res = LBank_response;
+  if( res != "hb"){
+    document.getElementById(EX_name).innerHTML = 
+	"<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+	res.tick.usd + 
+    "  ASK: " +
+    res.tick.usd +
+    "  LAST: " +
+    res.tick.latest	;
+  };
+  
+};
+
+
+
+</script>
+</html>

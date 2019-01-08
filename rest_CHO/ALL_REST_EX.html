@@ -1,0 +1,431 @@
+<html>
+
+<form action = ''>
+  Select Base Coin : 
+  <select id = "baseCoin">
+   <option value = "BTC" selected>Bitcoin BTC</option>
+   <option value = "ETH">Ethereum ETH</option>
+   <option value = "XRP">XRP</option>
+   <option value = "BCH">Bitcoin Cash BCH</option>
+   <option value = "EOS">EOS</option>
+   <option value = "XLM">Stellar XLM</option>
+   <option value = "USDT">Tether USDT</option>
+   <option value = "LTC">Litecoin LTC</option>
+   <option value = "BSV">Bitcoin SV BSV</option>   
+   <option value = "TRX">TRON TRX</option>  
+   <option value = "ADA">Cardano ADA</option>   
+   <option value = "IOTA">MIOTA</option>   
+   <option value = "XMR">Monero XMR</option>                           
+   <option value = "BNB">BNB</option> 
+   <option value = "DASH">DASH</option>  
+   <option value = "NEM">NEM</option> 
+   <option value = "ETC">Ethereum Classic ETC</option> 
+   <option value = "NEO">NEO</option>      
+   <option value = "MKR">Maker  MKR</option>       
+   <option value = "ZEC">Zcash ZEC</option> 
+   <option value = "WAVES">Waves</option> 
+   <option value = "XTZ">Tezos XTZ</option> 
+   <option value = "USDC">USD Coin  USDC</option> 
+   <option value = "DOGE">Dogecoin  DOGE</option>
+   <option value = "BTG">Bitcoin Gold  BTG</option> 
+   <option value = "VET">VeChain  VET</option> 
+   <option value = "OMG">OmiseGO  OMG</option> 
+   <option value = "TUSD">TrueUSD  TUSD</option> 
+   <option value = "QTUM">Qtum  QTUM</option>
+   <option value = "ZIL">Zilliqa  ZIL</option>
+   <option value = "ONT">Ontology  ONT</option>
+          
+          
+
+      
+      
+  </select>
+  <p></p>Select Quote Coin : 
+  <select id = "quoteCoin">
+   <option value = "BTC">Bitcoin BTC</option>
+   <option value = "ETH">Ethereum ETH</option>
+   <option value = "XRP">XRP</option>
+   <option value = "BCH">Bitcoin Cash BCH</option>
+   <option value = "EOS">EOS</option>
+   <option value = "XLM">Stellar XLM</option>
+   <option value = "USDT" selected>Tether USDT</option>      
+   <option value = "LTC">Litecoin LTC</option>
+   <option value = "BSV">Bitcoin SV BSV</option>   
+   <option value = "TRX">TRON TRX</option>  
+   <option value = "ADA">Cardano ADA</option>   
+   <option value = "IOTA">MIOTA</option>   
+   <option value = "XMR">Monero XMR</option>                           
+   <option value = "BNB">BNB</option> 
+   <option value = "DASH">DASH</option> 
+   <option value = "NEM">NEM</option> 
+   <option value = "ETC">Ethereum Classic ETC</option> 
+   <option value = "NEO">NEO</option>      
+   <option value = "MKR">Maker  MKR</option>       
+   <option value = "ZEC">Zcash ZEC</option> 
+   <option value = "WAVES">Waves</option> 
+   <option value = "XTZ">Tezos XTZ</option> 
+   <option value = "USDC">USD Coin  USDC</option> 
+   <option value = "DOGE">Dogecoin  DOGE</option>
+   <option value = "BTG">Bitcoin Gold  BTG</option> 
+   <option value = "VET">VeChain  VET</option> 
+   <option value = "OMG">OmiseGO  OMG</option> 
+   <option value = "TUSD">TrueUSD  TUSD</option> 
+   <option value = "QTUM">Qtum  QTUM</option>
+   <option value = "ZIL">Zilliqa  ZIL</option>
+   <option value = "ONT">Ontology  ONT</option> 
+      
+      
+      
+      
+      
+  </select>  
+  <p></p>Select Refresh Time : 
+  <select id = "refreshTime">
+   <option value = "1000"> 1 sec</option>
+   <option value = "3000" selected> 3 sec</option>
+   <option value = "5000"> 5 sec</option>                       
+  </select>      
+  <p></p>
+  <input type = "button"
+    value = "Get Price Data"
+    onclick = "GetPriceData()" />
+  <input type = "button"
+    value = "Get Price Data and Auto Refresh"
+    onclick = "SetTimeAndGo()" />
+ </form>
+
+    <div id="TESTAREA"></div>    
+
+    <div id="BinanceREST"></div>    
+    <div id="OKEX_REST"></div> 
+    <div id="HoubiREST"></div>
+    <div id="BIBOX_REST"></div>
+
+    <!-- NOT WORKING YET -->
+    <div id="ZB"></div>
+
+    
+    
+
+    
+    
+    
+<script>
+	
+function GetPriceData(){
+    var baseCoin = document.getElementById("baseCoin");
+    var quoteCoin = document.getElementById("quoteCoin");    
+    //console.log(baseCoin);   
+    document.getElementById("TESTAREA").innerHTML = "<p>Currency Pair Selected : " + baseCoin.value + " / " + quoteCoin.value ;
+
+    var BinanceRate = BinanceREST(baseCoin.value, quoteCoin.value);  
+    var OKEXRate = OKEX_REST(baseCoin.value, quoteCoin.value);  
+    var HoubiRate = HoubiREST(baseCoin.value, quoteCoin.value);  
+    var BIBOXRate = BIBOX_REST(baseCoin.value, quoteCoin.value);  
+    
+}//end of function
+
+
+
+    
+function SetTimeAndGo(){    
+    if( 1 ){
+    var setTime = document.getElementById("refreshTime")   ;
+
+    setInterval( GetPriceData, setTime);
+    //setInterval(OKEX_REST,setTime);
+    //setInterval(BinanceREST,setTime);    
+    //setInterval(HoubiREST,setTime);
+    //setInterval(BIBOX_REST,setTime);
+
+    }//end of if
+}//end of settime()
+    
+//====== Below unsuccess yet =======    
+//setInterval(ZB_REST,1000);
+//setInterval(OKEX_REST,1000);        
+    
+    
+//======================= Binance =========================
+//https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api_CN.md 
+function BinanceREST(baseCoin, quoteCoin){
+    
+var EX_name = "BinanceREST" ;
+//Coin pair sample for Binance : BTCUSDT 
+var Currancy_Pair = baseCoin + quoteCoin;
+var burl = "https://api.binance.com";
+
+var query = '/api/v1/ticker/24hr';
+    
+var options = '?symbol=' + Currancy_Pair ;
+    
+var url = burl + query + options ;
+    
+var BinanceRequest = new XMLHttpRequest();
+var binance_response = '';
+
+BinanceRequest.open('GET', url, true);
+BinanceRequest.onload = function(){
+   var text = BinanceRequest.responseText;
+   //console.log(text);
+   binance_response = JSON.parse(text);
+   //console.log(binance_response);
+    
+document.getElementById(EX_name).innerHTML = 
+  "<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+  Number(binance_response.bidPrice) + 
+  "  ASK: " +
+  Number(binance_response.askPrice) +
+  "  LAST: " +
+  Number(binance_response.lastPrice) ;  
+}
+BinanceRequest.send();
+
+return binance_response.lastPrice;
+    
+}//end of BinanceREST
+
+
+   
+  
+    
+//======================= OKEx =========================
+//https://www.okex.com/docs/en/#spot-some
+function OKEX_REST(baseCoin, quoteCoin){
+    
+var EX_name = "OKEX_REST" ;
+//Coin pair sample for OKEX : BTC-USDT 
+var Currancy_Pair = baseCoin + "-" + quoteCoin;
+var burl = "https://www.okex.com";
+
+var query = '/api/spot/v3/instruments/' + Currancy_Pair + '/ticker';
+    
+//var options = '';
+    
+var url = burl + query ;
+    
+var OKEXRequest = new XMLHttpRequest();
+var okex_response = '';
+
+OKEXRequest.open('GET', url, true);
+OKEXRequest.onload = function(){
+   var text = OKEXRequest.responseText;
+   //console.log(text);
+   okex_response = JSON.parse(text);
+   //console.log(okex_response);
+    
+  if( 1 ){ 
+      document.getElementById(EX_name).innerHTML = 
+      "<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+      Number(okex_response.bid) + 
+      "  ASK: " +
+      Number(okex_response.ask) +
+      "  LAST: " +
+      Number(okex_response.last) ; 
+  }//end of if
+}
+OKEXRequest.send();
+
+}//end of BinanceREST
+    
+  
+    
+    
+//======================= Huobi =========================
+//https://github.com/huobiapi/API_Docs/wiki
+    
+function HoubiREST(baseCoin, quoteCoin){
+    
+var EX_name = "HoubiREST" ;
+//Coin pair sample for Huobi : btcusdt 
+var Currancy_Pair = baseCoin.toLowerCase() + quoteCoin.toLowerCase() ;
+var burl = "https://api.huobi.pro";
+
+var query = '/market/detail/merged';
+    
+var options = '?symbol=' + Currancy_Pair ;
+    
+var url = burl + query + options ;
+
+const HEADER_DICT = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36",
+    "Content-Type": "application/json;charset=utf-8",
+    "Connection": "keep-alive"
+}
+
+
+var HoubiRequest = new XMLHttpRequest();
+var Houbi_response = '';
+
+HoubiRequest.open('GET', url, true);
+
+//houbi要求送過去的request要加以下的http header
+HoubiRequest.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36");  
+HoubiRequest.setRequestHeader("Content-Type", "application/json;charset=utf-8"); 
+    
+HoubiRequest.onload = function(){
+   var text = HoubiRequest.responseText;
+   //console.log(text);
+   Houbi_response = JSON.parse(text);
+   //console.log(Houbi_response);
+    
+if(true){document.getElementById(EX_name).innerHTML = 
+  "<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+  Number(Houbi_response.tick.ask[0] ) + 
+  "  ASK: " +
+  Number(Houbi_response.tick.bid[0] ) +
+  "  LAST: " +
+  Number(Houbi_response.tick.close );
+}//end of if
+}
+HoubiRequest.send();
+
+}//end of HoubiREST
+    
+
+
+    
+    
+
+
+//======================= Bibox =========================
+//https://github.com/Biboxcom/API_Docs/wiki
+function BIBOX_REST(baseCoin, quoteCoin){
+    
+var EX_name = "BIBOX_REST" ;
+//Coin pair sample for Bibox : BTC_USDT 
+var Currancy_Pair = baseCoin + "_" + quoteCoin ;
+var burl = "https://api.bibox.com";
+
+var query = '/v1/mdata';
+    
+var options = '?cmd=market&pair=' + Currancy_Pair ;
+        
+var url = burl + query + options ;
+    
+var BiboxRequest = new XMLHttpRequest();
+var bibox_response = '';
+
+BiboxRequest.open('GET', url, true);
+BiboxRequest.onload = function(){
+   var text = BiboxRequest.responseText;
+   //console.log(text);
+   bibox_response = JSON.parse(text);
+   //console.log(bibox_response);
+    
+  if( 1 ){ 
+      document.getElementById(EX_name).innerHTML = 
+      "<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+      Number(bibox_response.result.last) + 
+      "  ASK: " +
+      Number(bibox_response.result.last) +
+      "  LAST: " +
+      Number(bibox_response.result.last) ; 
+  }//end of if
+}
+BiboxRequest.send();
+
+}//end of BiboxREST        
+    
+    
+    
+    
+//============== BELOW NOT WORKING YET ====================    
+//============== BELOW NOT WORKING YET ====================
+//============== BELOW NOT WORKING YET ==================== 
+
+    
+
+    
+//======================= ZB =========================
+//https://www.zb.com/i/developer
+function ZB_REST(){
+    
+var EX_name = "ZB_REST" ;
+var Currancy_Pair = "BTC/USDT";
+var burl = "http://api.zb.cn";
+
+var query = '/data/v1/ticker';
+    
+var options = '?market=btc_usdt';
+    
+var url = burl + query + options ;
+    
+var ZBRequest = new XMLHttpRequest();
+var ZB_response = '';
+
+ZBRequest.open('GET', url, true);
+ZBRequest.onload = function(){
+   var text = ZBRequest.responseText;
+   //console.log(text);
+   ZB_response = JSON.parse(text);
+   //console.log(binance_response);
+    
+if(false){document.getElementById(EX_name).innerHTML = 
+  "<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+  ZB_response.bidPrice + 
+  "  ASK: " +
+  ZB_response.askPrice +
+  "  LAST: " +
+  ZB_response.lastPrice;  
+}//end of if
+    
+ZBRequest.send();
+    
+}//end of onload
+    
+}//end of ZB_REST()
+    
+    
+
+//======================= Coinbene =========================
+//https://github.com/Coinbene/API-Documents-CHN/wiki/1.0.0-Coinbene-REST-API
+function COINBENE_REST(){
+    
+var EX_name = "COINBENE_REST" ;
+var Currancy_Pair = "BTC/USDT";
+var burl = "http://api.coinbene.com";
+
+var query = '/v1/market/ticker';
+    
+var options = '?symbol=btcusdt';
+    
+var url = burl + query + options ;
+    
+var CoinbeneRequest = new XMLHttpRequest();
+var coinbene_response = '';
+
+CoinbeneRequest.open('GET', url, true);
+    
+//Coinbene要求送過去的request要加以下的http header
+//CoinbeneRequest.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko");  
+CoinbeneRequest.setRequestHeader("Content-Type", "application/json;charset=utf-8"); 
+//CoinbeneRequest.setRequestHeader("Connection", "keep-alive");
+    
+CoinbeneRequest.onload = function(){
+   var text = CoinbeneRequest.responseText;
+   //console.log(text);
+   coinbene_response_response = JSON.parse(text);
+   //console.log(coinbene_response);
+    
+if(false){document.getElementById(EX_name).innerHTML = 
+  "<p>" + EX_name + "  " + Currancy_Pair + "  Bid: " + 
+  coinbene_response.bidPrice + 
+  "  ASK: " +
+  coinbene_response.askPrice +
+  "  LAST: " +
+  coinbene_response.lastPrice;  
+}//end of if
+    
+CoinbeneRequest.send();
+    
+}//end of onload
+    
+}//end of Coinbene_REST()
+    
+    
+    
+ 
+    
+</script>
+</html>
