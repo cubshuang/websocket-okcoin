@@ -1,0 +1,4 @@
+[
+  {'deviceName' : 'test1', 'MAC' : '0C:61:CF:1A:07:9D', 'url' : 'https://zh.wikipedia.org/wiki/%E5%9C%8B%E7%AB%8B%E5%B1%8F%E6%9D%B1%E5%A4%A7%E5%AD%B8#%E5%9C%8B%E7%AB%8B%E5%B1%8F%E6%9D%B1%E5%A4%A7%E5%AD%B8'}," +
+  {'deviceName' : 'test2', 'MAC' : '0C:61:CF:1A:08:76', 'url' : 'https://zh.wikipedia.org/wiki/%E7%BB%B4%E5%9F%BA%E7%99%BE%E7%A7%91'}
+]
