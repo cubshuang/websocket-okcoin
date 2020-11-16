@@ -1,4 +1,19 @@
 [
-  {"deviceName" : "測試一", "MAC" : "0C:61:CF:1A:07:9D", "url" : "https://cubshuang.github.io/ExamTraining/"},
-  {"deviceName" : "測試二", "MAC" : "0C:61:CF:1A:08:76", "url" : "https://cubshuang.github.io/ShiftArrange/"}
+  {"deviceName" : "展示001", "MAC" : "A4:34:F1:89:E6:80", "url" : "http://mail.mailerd.com/beacon/001.html"},
+  {"deviceName" : "展示002", "MAC" : "A4:34:F1:89:E8:E2", "url" : "http://mail.mailerd.com/beacon/002.html"},
+  {"deviceName" : "展示003", "MAC" : "A4:34:F1:89:E9:10", "url" : "http://mail.mailerd.com/beacon/003.html"},
+  {"deviceName" : "展示004", "MAC" : "A4:34:F1:89:EC:6E", "url" : "http://mail.mailerd.com/beacon/004.html"},
+  {"deviceName" : "展示005", "MAC" : "A4:34:F1:89:EB:6B", "url" : "http://mail.mailerd.com/beacon/005.html"},
+  {"deviceName" : "展示006", "MAC" : "A4:34:F1:89:E8:F6", "url" : "http://mail.mailerd.com/beacon/006.html"},
+  {"deviceName" : "展示007", "MAC" : "A4:34:F1:8A:87:C1", "url" : "http://mail.mailerd.com/beacon/007.html"},
+  {"deviceName" : "展示008", "MAC" : "A4:34:F1:8A:87:C5", "url" : "http://mail.mailerd.com/beacon/008.html"},
+  {"deviceName" : "展示009", "MAC" : "A4:34:F1:89:E6:73", "url" : "http://mail.mailerd.com/beacon/009.html"},
+  {"deviceName" : "展示010", "MAC" : "A4:34:F1:89:E4:26", "url" : "http://mail.mailerd.com/beacon/010.html"},
+  {"deviceName" : "展示011", "MAC" : "A4:34:F1:89:EF:04", "url" : "http://mail.mailerd.com/beacon/011.html"},
+  {"deviceName" : "展示012", "MAC" : "A4:34:F1:89:E8:D2", "url" : "http://mail.mailerd.com/beacon/012.html"},
+  {"deviceName" : "展示013", "MAC" : "A4:34:F1:89:E7:C8", "url" : "http://mail.mailerd.com/beacon/013.html"},
+  {"deviceName" : "展示014", "MAC" : "A4:34:F1:89:E9:1F", "url" : "http://mail.mailerd.com/beacon/014.html"},
+  {"deviceName" : "展示015", "MAC" : "A4:34:F1:89:E6:7C", "url" : "http://mail.mailerd.com/beacon/015.html"},
+  {"deviceName" : "展示001T", "MAC" : "0C:61:CF:1A:07:9D", "url" : "http://mail.mailerd.com/beacon/001.html"},
+  {"deviceName" : "展示002T", "MAC" : "0C:61:CF:1A:08:76", "url" : "http://mail.mailerd.com/beacon/002.html"}
 ]
